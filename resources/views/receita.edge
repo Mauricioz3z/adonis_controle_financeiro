@@ -1,0 +1,117 @@
+@layout('master')
+
+@section('content')
+<div class="panel-header panel-header-sm">
+</div>
+<div class="content">
+  <div class="row">
+
+    <div class="col-md-8">
+            <div class="card  card-tasks">
+              <div class="card-header ">
+            
+                <h5 class="card-category">Lançamentos</h5>
+                {{--  <h4 class="card-title">Lista</h4>  --}}
+
+                <div class="form-group">
+                        <a class="btn btn-success" href="/nova-receita" >Nova Receita</a>
+                      </div>
+                      @if(flashMessage('notification_delete'))
+  
+                      <div class="alert alert-info">
+                            <span>{{flashMessage('notification_delete')}}</span>
+                          </div>
+                      @endif
+              </div>
+          
+              <div class="card-body ">
+                <div class="table-full-width table-responsive">
+                  <table class="table">
+                    <tbody>
+                            @each(receita in listaReceitas)
+                            
+                            <tr>
+                                    <td>
+                                      <div class="form-check">
+                                        <label class="form-check-label">
+                                          <input class="form-check-input" type="checkbox" checked>
+                                          <span class="form-check-sign"></span>
+                                        </label>
+                                      </div>
+                                    </td>
+                                    <td class="text-left"># {{ receita.id }}</td>
+                                    <td class="text-left">{{ receita.descricao }}</td>
+                                    <td class="text-left"> R$ {{ receita.valor }}</td>
+                                    <td class="td-actions text-right">
+                                        {{--  <form action="profile/?_method=PUT" method="POST"></form>  --}}
+                                            <a href="/receita/{{receita.id}}" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
+                                                    <i class="now-ui-icons ui-2_settings-90"></i>
+                                       
+                                   
+                                            </a>
+                                      <form action="receita/?_method=DELETE" method="POST">
+                                        {{csrfField()}}
+                                         <input type="hidden" id='receita_id' name="receita_id" value={{ receita.id }}>
+                                        <button type="submit" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                              </button>
+                                    </form>
+                                
+                                    </td>
+                                  </tr>
+                          @endeach
+      
+              
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer ">
+        
+                <hr>
+                {{-- 
+                     <div class="stats">
+                  <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                </div>  
+                --}}
+              </div>
+            </div>
+          </div>
+    <!-- <div class="col-md-4">
+      <div class="card card-user">
+        <div class="image">
+          <img src="../assets/img/bg5.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="author">
+            <a href="#">
+              <img class="avatar border-gray" src="../assets/img/mike.jpg" alt="...">
+              <h5 class="title">Mike Andrew</h5>
+            </a>
+            <p class="description">
+              michael24
+            </p>
+          </div>
+          <p class="description text-center">
+            "Lamborghini Mercy
+            <br> Your chick she so thirsty
+            <br> I'm in that two seat Lambo"
+          </p>
+        </div>
+        <hr>
+        <div class="button-container">
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-google-plus-g"></i>
+          </button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+@endsection
