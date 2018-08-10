@@ -720,12 +720,12 @@ demo.initBarchart()
   //        console.log(data)
   //       });
 
-  $.get('http://localhost:3333/get-grafico-receitas', function (data, status) {
+  $.get('/get-grafico-receitas', function (data, status) {
     demo.initReceitaCharts(data);
     console.log(data)
   });
 
-  $.get('http://localhost:3333/get-grafico', function (data, status) {
+  $.get('/get-grafico', function (data, status) {
     demo.initDespesaCharts(data);
     console.log(data)
   });

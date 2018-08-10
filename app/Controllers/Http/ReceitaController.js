@@ -3,9 +3,6 @@ let { validateAll } = use('Validator')
 const Receita = use('App/Models/Receita')
 const Database = use('Database')
 class ReceitaController {
-
-
-
 async  getgraficoMes({response}) {
     // await Database.raw('select * from users where username = ?', [username])
     let responseData=await Database.raw('SELECT SUM(receitas.valor) as valor, DATE_FORMAT(receitas.data, "%M") Months FROM receitas GROUP BY Months ORDER by DATE_FORMAT(receitas.data, "%m");')
