@@ -67,7 +67,7 @@ async  getgraficoMes({response}) {
         despesa.observacoes = request.input('observacoes')
 
         try {
-            await Despesa.save();
+            await despesa.save();
             session.flash({ notification: 'Cadastro realizado com sucesso!' })
             console.log('Salvou.......')
             return response.redirect('back')
@@ -116,7 +116,7 @@ async  getgraficoMes({response}) {
 
         try {
              // Update
-            await Despesa.save()
+            await despesa.save()
             session.flash({ notification: 'Dados atualizado!' })
             console.log('Salvou.......')
             return response.redirect('back')
@@ -136,7 +136,7 @@ async  getgraficoMes({response}) {
     try {
 
         const despesa = await Despesa.find(data.despesa_id)
-        await Despesa.delete()
+        await despesa.delete()
 
         session.flash({ notification_delete: 'Item excuído com sucesso!'})
         console.log('Salvou.......') 
